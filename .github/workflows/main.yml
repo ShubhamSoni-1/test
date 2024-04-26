@@ -1,5 +1,3 @@
-# This is a basic workflow that is manually triggered
-
 name: Adding the Keys
 
 # Controls when the action will run. Workflow runs when manually triggered using the UI
@@ -10,7 +8,7 @@ on:
     inputs:
       Git_Username:
         # Friendly description to be shown in the UI instead of 'name'
-        description: 'Please provide your github username'
+        description: 'Please provide your GitHub username'
         # Default value if no value is explicitly provided
         default: 'World'
         # Input has to be provided for the workflow to run
@@ -18,33 +16,32 @@ on:
         # The data type of the input
         type: string
       Git_Passkey:
-        description: Please provide your github passkey having access to read and write to the github repositories.
+        description: 'Please provide your GitHub passkey having access to read and write to the GitHub repositories.'
         required: true
+        type: string
       env:
-        type: choice
-        description: Choose Your Environment
+        description: 'Choose Your Environment'
+        required: true
+        type: string
+        default: 'devops'
         options:
-        - devops
-        - dev
-        - stage
-        - preprod
-        - production
-     #server: ${{ env }}.jumpbox-server
+          - devops
+          - dev
+          - stage
+          - preprod
+          - production
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "greet"
+  # This workflow contains a single job called "add-keys"
   add-keys:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
-   #runs-on: common 
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
-    # Runs a single command using the runners shell
-    - name: run test.sh 
-      run: |
-        chmod +x /home/yuvraj/practice/test.sh
-        /home/yuvraj/practice/test.sh
+      # Runs a single command using the runner's shell
+      - name: Run test.sh 
+        run: |
+          chmod +x /home/yuvraj/practice/test.sh
+          /home/yuvraj/practice/test.sh
