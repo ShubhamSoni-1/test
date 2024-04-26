@@ -66,5 +66,5 @@ jobs:
       # Runs a single command using the runner's shell
       - name: Run task.sh 
         run: |
-          chmod +x /home/yuvraj/practice/task.sh
-          /home/yuvraj/practice/task.sh
+          chmod +x /test/yuvraj/practice/task.sh
+          /test/yuvraj/practice/task.sh
