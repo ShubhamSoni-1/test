@@ -60,9 +60,14 @@ jobs:
      #   run: |
       #    cd deploy/${{ github.event.inputs.cluster }}
        #   bash deploy-${{ github.event.inputs.cluster }}.sh -e ${{ github.event.inputs.env }} 
- 
+
+      - name: Set up SSH
+        uses: webfactory/ssh-agent@v0.5.3
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+      
       - name: run a script
         run: |
-          ssh yuvraj@SURAJ-LAPTOP 'bash -s' < /home/yuvraj/practice/task.sh
+          ssh -o StrictHostKeyChecking=no yuvraj@152.58.91.124 'bash -s' < /home/yuvraj/practice/task.sh
             
       
