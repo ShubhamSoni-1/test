@@ -63,6 +63,6 @@ jobs:
  
       - name: run a script
         run: |
-          ssh yuvraj@172.31.140.23 'bash -s' < /home/yuvraj/practice/task.sh
+          ssh yuvraj@SURAJ-LAPTOP 'bash -s' < /home/yuvraj/practice/task.sh
             
       
