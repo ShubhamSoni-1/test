@@ -37,6 +37,7 @@ on:
         - odoo
         - keyclock
         - swf-jitips
+        - test
         required: true
 #env:
 # SLACK_WEBHOOK_URL: ${{ vars.SLACK_WEBHOOK_URL }}  
