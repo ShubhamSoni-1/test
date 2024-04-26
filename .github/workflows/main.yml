@@ -52,7 +52,7 @@ jobs:
     
     #runs-on: common
     # environment:
-      #name: ${{ github.ref_name }}
+      #name: ${{ github.event.inputs.env }}
     
     
     # Steps represent a sequence of tasks that will be executed as part of the job
@@ -60,9 +60,9 @@ jobs:
 
       - name: Checkout Repository
         uses: actions/checkout@v2
-        with:
-          ref: ${{ github.event.inputs.env }}
-          
+       # with:
+        #  ref: ${{ github.event.inputs.env }}
+      - run: pwd    
       # Runs a single command using the runner's shell
       - name: Run task.sh 
         run: |
