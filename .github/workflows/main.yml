@@ -5,40 +5,7 @@ name: Adding the Keys
 on:
   workflow_dispatch:
     # Inputs the workflow accepts.
-    inputs:
-      Git_Username:
-        # Friendly description to be shown in the UI instead of 'name'
-        description: 'Please provide your GitHub username'
-        # Default value if no value is explicitly provided
-        default: 'World'
-        # Input has to be provided for the workflow to run
-        required: true
-        # The data type of the input
-        type: string
-      Git_Passkey:
-        description: 'Please provide your GitHub passkey having access to read and write to the GitHub repositories.'
-        required: true
-        type: string
-      env:
-        description: 'Choose Your Environment'
-        required: true
-        type: string
-        default: 'devops'
-        options:
-          - devops
-          - dev
-          - stage
-          - preprod
-          - production
-      cluster:
-        type: choice
-        description: Choose your cluster
-        options:
-        - odoo
-        - keyclock
-        - swf-jitips
-        - test
-        required: true
+  
 #env:
 # SLACK_WEBHOOK_URL: ${{ vars.SLACK_WEBHOOK_URL }}  
 
