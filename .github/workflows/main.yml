@@ -41,8 +41,8 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Runs a single command using the runner's shell
-      - name: Run test.sh 
+      - name: Run task.sh 
         run: |
           pwd
-          chmod +x /home/yuvraj/practice/test.sh
-          /home/yuvraj/practice/test.sh
+          chmod +x /home/yuvraj/practice/task.sh
+          /home/yuvraj/practice/task.sh
