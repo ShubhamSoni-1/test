@@ -43,5 +43,6 @@ jobs:
       # Runs a single command using the runner's shell
       - name: Run test.sh 
         run: |
+          pwd
           chmod +x /home/yuvraj/practice/test.sh
           /home/yuvraj/practice/test.sh
