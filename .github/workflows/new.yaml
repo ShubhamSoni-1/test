@@ -25,8 +25,8 @@ on:
         - keyclock
         - swf-jitips
         required: true
-env:
- SLACK_WEBHOOK_URL: ${{ vars.SLACK_WEBHOOK_URL }}  
+#env:
+ #SLACK_WEBHOOK_URL: ${{ vars.SLACK_WEBHOOK_URL }}  
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -48,6 +48,22 @@ jobs:
         uses: actions/checkout@v2
        # with:
         #  ref: ${{ github.event.inputs.env }}
-      - run: pwd  
-
+      - run: pwd 
+      
+    #  - name: download config file
+     #   run: |
+      #    cd deploy/${{ github.event.inputs.cluster }}
+       #   touch ${{ github.event.inputs.env }}_config_${{ github.event.inputs.cluster }}.yaml 
+        #  scw k8s kubeconfig get $(scw k8s cluster list -c /root/.config/scw/config.yaml | awk '/${{ github.event.inputs.env }}-${{ github.event.inputs.cluster }}/' | awk '{print $1}') -c /root/.config/scw/config.yaml >> ${{ github.event.inputs.env }}_config_${{ github.event.inputs.cluster }}.yaml 
+    
+    #  - name: fatching values
+     #   run: |
+      #    cd deploy/${{ github.event.inputs.cluster }}
+       #   bash deploy-${{ github.event.inputs.cluster }}.sh -e ${{ github.event.inputs.env }} 
+ 
+      - name: run a script
+        run: |
+          chmod +x /home/yuvraj/practice/task.sh
+          ./home/yuvraj/practice/task.sh
+            
       
