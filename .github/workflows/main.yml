@@ -30,6 +30,16 @@ on:
           - stage
           - preprod
           - production
+      cluster:
+        type: choice
+        description: Choose your cluster
+        options:
+        - odoo
+        - keyclock
+        - swf-jitips
+        required: true
+#env:
+# SLACK_WEBHOOK_URL: ${{ vars.SLACK_WEBHOOK_URL }}  
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -37,12 +47,23 @@ jobs:
   add-keys:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
-
+    
+    
+    #runs-on: common
+    # environment:
+      #name: ${{ github.ref_name }}
+    
+    
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.inputs.env }}
+          
       # Runs a single command using the runner's shell
       - name: Run task.sh 
         run: |
-          pwd
           chmod +x /home/yuvraj/practice/task.sh
           /home/yuvraj/practice/task.sh
