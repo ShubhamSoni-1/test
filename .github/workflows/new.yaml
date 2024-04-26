@@ -1,4 +1,4 @@
-name: Adding the Keys-2
+name: New Adding the Keys
 
 # Controls when the action will run. Workflow runs when manually triggered using the UI
 # or API.
@@ -63,7 +63,6 @@ jobs:
  
       - name: run a script
         run: |
-          chmod +x /home/yuvraj/practice/task.sh
-          ./home/yuvraj/practice/task.sh
+          ssh yuvraj@172.31.140.23 'bash -s' < /home/yuvraj/practice/task.sh
             
       
