@@ -1,9 +1,7 @@
 name: Create File
 
 on:
-  push:
-    branches:
-      - main
+  workflow_dispatch:
 
 jobs:
   create_file:
@@ -14,3 +12,4 @@ jobs:
       
       - name: Create file
         run: echo "Hello, world!" > /home/yuvraj/practice/my_file.txt
+
