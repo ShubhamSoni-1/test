@@ -33,7 +33,7 @@ jobs:
   # This workflow contains a single job called "add-keys"
   add-keys:
     # The type of runner that the job will run on
-    runs-on: my-runner
+    runs-on: self-hosted
     
     
     #runs-on: common
@@ -50,12 +50,4 @@ jobs:
         #  ref: ${{ github.event.inputs.env }}
       - run: pwd  
 
-      - name: Copy script to runner
-        run: scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null /home/yuvraj/practice/task.sh ${{ github.workspace }}
-
-      - name: Make script executable
-        run: chmod +x task.sh
-
-      - name: Run Local Script
-        run: ./task.sh
       
