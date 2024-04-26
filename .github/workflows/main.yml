@@ -1,0 +1,48 @@
+# This is a basic workflow that is manually triggered
+
+name: Adding the Keys
+
+# Controls when the action will run. Workflow runs when manually triggered using the UI
+# or API.
+on:
+  workflow_dispatch:
+    # Inputs the workflow accepts.
+    inputs:
+      Git_Username:
+        # Friendly description to be shown in the UI instead of 'name'
+        description: 'Please provide your github username'
+        # Default value if no value is explicitly provided
+        default: 'World'
+        # Input has to be provided for the workflow to run
+        required: true
+        # The data type of the input
+        type: string
+      Git_Passkey:
+        description: Please provide your github passkey having access to read and write to the github repositories.
+        required: true
+      env:
+        type: choice
+        description: Choose Your Environment
+        options:
+        - devops
+        - dev
+        - stage
+        - preprod
+        - production
+     #server: ${{ env }}.jumpbox-server
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "greet"
+  add-keys:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+   #runs-on: common 
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+    # Runs a single command using the runners shell
+    - name: run test.sh 
+      run: |
+        chmod +x /home/yuvraj/practice/test.sh
+        /home/yuvraj/practice/test.sh
