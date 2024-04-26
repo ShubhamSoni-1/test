@@ -1,0 +1,16 @@
+name: Create File
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  create_file:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      
+      - name: Create file
+        run: echo "Hello, world!" > /home/yuvraj/practice/my_file.txt
