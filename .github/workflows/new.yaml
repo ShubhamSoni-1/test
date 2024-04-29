@@ -68,7 +68,7 @@ jobs:
       
       - name: run a script
         run: |
-          ssh -i yuvraj@152.58.91.124 /home/ubuntu/local-key
+          ssh -i yuvraj@172.31.140.23 /home/ubuntu/local-key
           bash /home/yuvraj/practice/task.sh
             
       
