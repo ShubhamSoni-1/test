@@ -19,7 +19,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
       with:
-          ref: ${{ github.event.inputs.env }}
+          ref: ${{ github.ref_name }}
     
     - name: Determine Branch and Repository Dispatch
       id: nfs_server
