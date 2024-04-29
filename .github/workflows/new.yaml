@@ -1,75 +1,54 @@
-name: New pipeline
-
-# Controls when the action will run. Workflow runs when manually triggered using the UI
-# or API.
+name: Adding keys
 on:
   workflow_dispatch:
-    # Inputs the workflow accepts.
-    inputs:      
+    inputs:
       env:
-        description: 'Choose Your Environment'
-        required: true
-        type: string
-        default: 'devops'
-        options:
-          - devops
-          - dev
-          - stage
-          - preprod
-          - production
-      cluster:
         type: choice
-        description: 'Choose your cluster'
+        description: Choose Your Environment
         options:
-        - odoo
-        - keyclock
-        - swf-jitips
-        required: true
-#env:
- #SLACK_WEBHOOK_URL: ${{ vars.SLACK_WEBHOOK_URL }}  
-
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+        - devops
+        - dev
+        - stage
+        - preprod
+        - production
 jobs:
-  # This workflow contains a single job called "add-keys"
-  add-keys:
-    # The type of runner that the job will run on
+  build:
+
     runs-on: self-hosted
-    
-    
-    #runs-on: common
-    # environment:
-      #name: ${{ github.event.inputs.env }}
-    
-    
-    # Steps represent a sequence of tasks that will be executed as part of the job
+
     steps:
-
-      - name: Checkout Repository
-        uses: actions/checkout@v2
-       # with:
-        #  ref: ${{ github.event.inputs.env }}
-      - run: pwd 
-      
-    #  - name: download config file
-     #   run: |
-      #    cd deploy/${{ github.event.inputs.cluster }}
-       #   touch ${{ github.event.inputs.env }}_config_${{ github.event.inputs.cluster }}.yaml 
-        #  scw k8s kubeconfig get $(scw k8s cluster list -c /root/.config/scw/config.yaml | awk '/${{ github.event.inputs.env }}-${{ github.event.inputs.cluster }}/' | awk '{print $1}') -c /root/.config/scw/config.yaml >> ${{ github.event.inputs.env }}_config_${{ github.event.inputs.cluster }}.yaml 
+    - uses: actions/checkout@v3
+      with:
+          ref: ${{ github.event.inputs.env }}
     
-    #  - name: fatching values
-     #   run: |
-      #    cd deploy/${{ github.event.inputs.cluster }}
-       #   bash deploy-${{ github.event.inputs.cluster }}.sh -e ${{ github.event.inputs.env }} 
-
-      - name: Set up SSH
-       # uses: webfactory/ssh-agent@v0.5.3
-       # with:
-       #   ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-      
-      - name: run a script
-        run: |
-          chmod 400 /home/ubuntu/local-key-pub
-          ssh -i yuvraj@172.31.140.23 /home/ubuntu/local-key-pub
-          bash /home/yuvraj/practice/task.sh
-            
-      
+    - name: Determine Branch and Repository Dispatch
+      id: nfs_server
+      run: |
+        if [[ "${{ github.event.inputs.env }}" == "dev" ]]; then
+          server="dev.jumpbox.jips.io"
+        elif [[ "${{ github.event.inputs.env }}" == "devops" ]]; then
+          server="devops.jumpbox.jips.io"
+        elif [[ "${{ github.event.inputs.env }}" == "stage" ]]; then
+          server="stage.jumpbox.jips.io"
+        elif [[ "${{ github.event.inputs.env }}" == "preprod" ]]; then
+          server="preprod.jumpbox.jips.io"
+        elif [[ "${{ github.event.inputs.env }}" == "production" ]]; then
+          server="production.jumpbox.jips.io"
+        else
+          echo "Invalid input detected: ${{ github.event.inputs.env }}"
+          exit 1
+        fi
+        
+        echo "branch=${server}" >> "$GITHUB_OUTPUT"
+    
+    - name: executing remote ssh commands using ssh key to take backup of ODOO DB
+      uses: appleboy/ssh-action@v1.0.0
+      with:
+        host: ${{ steps.nfs_server.outputs.branch }}
+        username: root
+        key: ${{ secrets.NFS_SSH_PRIVATE_KEY }}
+        port: 22
+        script: |
+          cat /team_keys >> ~/.ssh/authorized_keys
+          sort ~/.ssh/authorized_keys | uniq > ~/.ssh/temp.txt
+          mv ~/.ssh/temp.txt ~/.ssh/authorized_keys
