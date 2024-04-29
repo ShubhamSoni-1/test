@@ -33,3 +33,22 @@ jobs:
     steps:
     - name: Deploy
       run: echo "Deploying..."    
+   
+  test2:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Test
+      run: echo "Testing...2"
+
+  test3:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Test
+      run: echo "Testing...3"
+
+  test4:
+    needs: [ build, test, test3]
+    runs-on: ubuntu-latest
+    steps:
+    - name: Test
+      run: echo "Testing...4"    
