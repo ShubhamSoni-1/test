@@ -62,13 +62,13 @@ jobs:
        #   bash deploy-${{ github.event.inputs.cluster }}.sh -e ${{ github.event.inputs.env }} 
 
       - name: Set up SSH
-        uses: webfactory/ssh-agent@v0.5.3
-        with:
-          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+       # uses: webfactory/ssh-agent@v0.5.3
+       # with:
+       #   ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
       
       - name: run a script
         run: |
-          ssh -i yuvraj@152.58.91.124 /home/ubuntu/local-key.pem
+          ssh -i yuvraj@152.58.91.124 /home/ubuntu/local-key
           bash /home/yuvraj/practice/task.sh
             
       
