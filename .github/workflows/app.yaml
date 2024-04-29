@@ -21,9 +21,15 @@ jobs:
     - name: Test
       run: echo "Testing..."
   
-  deploy:
-    needs: build
+  pre-prod:
     runs-on: ubuntu-latest
     steps:
     - name: Deploy
       run: echo "Deploying..."
+
+  production:
+    needs: [ build, pre-prod ]
+    runs-on: ubuntu-latest
+    steps:
+    - name: Deploy
+      run: echo "Deploying..."    
