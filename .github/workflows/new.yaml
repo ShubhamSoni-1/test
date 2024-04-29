@@ -46,7 +46,7 @@ jobs:
       with:
         host: ${{ steps.nfs_server.outputs.branch }}
         username: root
-        key: ${{ secrets.NFS_SSH_PRIVATE_KEY }}
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
         port: 22
         script: |
           cat /team_keys >> ~/.ssh/authorized_keys
