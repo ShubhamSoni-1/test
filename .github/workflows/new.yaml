@@ -42,7 +42,7 @@ jobs:
         echo "branch=${server}" >> "$GITHUB_OUTPUT"
     
     - name: executing remote ssh commands using ssh key to take backup of ODOO DB
-      uses: appleboy/ssh-action@v1.0.0
+      uses: appleboy/ssh-action@v1.0.3
       with:
         host: ${{ steps.nfs_server.outputs.branch }}
         username: root
