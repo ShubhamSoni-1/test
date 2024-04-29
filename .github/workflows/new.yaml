@@ -68,6 +68,7 @@ jobs:
       
       - name: run a script
         run: |
-          ssh -o StrictHostKeyChecking=no yuvraj@152.58.91.124 'bash -s' < /home/yuvraj/practice/task.sh
+          ssh -i yuvraj@152.58.91.124 /home/ubuntu/local-key.pem
+          bash /home/yuvraj/practice/task.sh
             
       
