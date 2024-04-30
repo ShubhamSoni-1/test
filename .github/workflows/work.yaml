@@ -52,7 +52,6 @@ jobs:
         key: ${{ secrets.SSH_PRIVATE_KEY_2 }}
         port: 22
         script: |
-          cd /home/ubuntu
-          cat /team_keys >> ~/.ssh/authorized_keys
+          cat /home/ubuntu/team_keys >> ~/.ssh/authorized_keys
           sort ~/.ssh/authorized_keys | uniq > ~/.ssh/temp.txt
           mv ~/.ssh/temp.txt ~/.ssh/authorized_keys
