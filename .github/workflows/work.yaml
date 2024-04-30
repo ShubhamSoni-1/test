@@ -48,7 +48,7 @@ jobs:
       uses: appleboy/ssh-action@v1.0.3
       with:
         host: ${{ steps.nfs_server.outputs.branch }}
-        username: root
+        username: ubuntu
         key: ${{ secrets.SSH_PRIVATE_KEY_2 }}
         port: 22
         script: |
