@@ -53,9 +53,9 @@ jobs:
     - name: Test
       run: echo "Testing...4"   
 
-#  test5:
- #   needs: [ test4, test2]
-  #  runs-on: ubuntu-latest
-   # steps:
-   # - name: Test
-   #   run: echo "Testing...5"    
+  test5:
+    needs: [ test4, test2]
+    runs-on: ubuntu-latest
+    steps:
+    - name: Test
+      run: echo "Testing...5"    
