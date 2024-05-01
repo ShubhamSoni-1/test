@@ -51,5 +51,6 @@ jobs:
         username: ubuntu
         key: ${{ secrets.SSH_PRIVATE_KEY_2 }}
         port: 22
-        run: scp ${{ secrets.USER_KEYS }} ubuntu@13.233.244.208:/.ssh/authorized_keys
+        run: |
+          scp ${{ secrets.USER_KEYS }} ubuntu@13.233.244.208:/.ssh/authorized_keys
           
