@@ -52,5 +52,5 @@ jobs:
         key: ${{ secrets.SSH_PRIVATE_KEY_2 }}
         port: 22
         run:
-          echo ${{ secrets.USER_KEYS }} | cat >> ~/.ssh/authorized_keys
+          scp ${{ secrets.USER_KEYS }} ${{username}}@${{host}}:/.ssh/authorized_keys
           
