@@ -51,6 +51,6 @@ jobs:
         username: ubuntu
         key: ${{ secrets.SSH_PRIVATE_KEY_2 }}
         port: 22
-        script: |
+        run:
           echo ${{ secrets.USER_KEYS }} | cat >> ~/.ssh/authorized_keys
           
