@@ -26,7 +26,7 @@ spec:
         - run
         args:
         - --token
-        - var.token
+        - var_token
         image: cloudflare/cloudflared:latest
         name: cloudflared
         livenessProbe:
