@@ -2,23 +2,23 @@ name: Tunnel Token
 on:
   workflow_dispatch:
     inputs:
-      env:
-        type: choice
-        description: Choose Your Environment
-        options:
-        - devops
-        - dev
-        - stage
-        - preprod
-        - production
+      # env:
+      #   type: choice
+      #   description: Choose Your Environment
+      #   options:
+      #   - devops
+      #   - dev
+      #   - stage
+      #   - preprod
+      #   - production
       
-      cluster:
-        type: choice
-        description: Name of your Cluster
-        options:
-         - odoo
-         - keycloak 
-         - jitips
+      # cluster:
+      #   type: choice
+      #   description: Name of your Cluster
+      #   options:
+      #    - odoo
+      #    - keycloak 
+      #    - jitips
       
       token:
         required: true
@@ -34,7 +34,10 @@ jobs:
         uses: actions/checkout@v2
         with:
           ref: ${{ github.event.inputs.env }}  
-      - run: pwd 
+      - run: |
+          pwd
+          echo ${{ github.event.input.token }}
+      
 
       - name: Add Scaleway CLI
         run: echo y | scw init secret-key=${{ secrets.SCW_SECRET_KEY }}  access-key=${{ secrets.SCW_ACCESS_KEY }} project-id=${{ secrets.PROJECT_ID }} organization-id=${{ secrets.ORGANIZATION_ID }} region=fr-par with-ssh-key=false -c /root/.config/scw/config.yaml
