@@ -6,23 +6,20 @@ on:
         type: choice
         description: Choose Your Environment
         options:
-        - devops
-        - dev
-        - stage
-        - preprod
-        - production
-        - test
+          - devops
+          - dev
+          - stage
+          - preprod
+          - production
+          - test
       token:
         required: true
-        description: "Token to use for the tunnel" 
-      
+        description: Token to use for the tunnel
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
-    - name: Checkout Code
-    - uses: actions/checkout@v3
-    
-    - name: token value
-      run: echo ${{ github.event.input.token}}
+      - name: Checkout Code
+      - uses: actions/checkout@v3
+      - name: token value
+        run: echo ${{ github.event.input.token}}
