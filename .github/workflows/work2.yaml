@@ -22,39 +22,43 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Checkout Code
     - uses: actions/checkout@v3
       with:
           ref: ${{ github.ref_name }}
     
-    - name: Determine Branch and Repository Dispatch
-      id: nfs_server
-      run: |
-        if [[ "${{ github.event.inputs.env }}" == "dev" ]]; then
-          server="dev.jumpbox.jips.io"
-        elif [[ "${{ github.event.inputs.env }}" == "devops" ]]; then
-          server="devops.jumpbox.jips.io"
-        elif [[ "${{ github.event.inputs.env }}" == "stage" ]]; then
-          server="stage.jumpbox.jips.io"
-        elif [[ "${{ github.event.inputs.env }}" == "preprod" ]]; then
-          server="preprod.jumpbox.jips.io"
-        elif [[ "${{ github.event.inputs.env }}" == "production" ]]; then
-          server="production.jumpbox.jips.io" 
-        elif [[ "${{ github.event.inputs.env }}" == "test" ]]; then
-          server="ec2-13-233-244-208.ap-south-1.compute.amazonaws.com"   
-        else
-          echo "Invalid input detected: ${{ github.event.inputs.env }}"
-          exit 1
-        fi
+    - name: token value
+      run: echo ${{ github.event.input.token}}
+  
+    # - name: Determine Branch and Repository Dispatch
+    #   id: nfs_server
+    #   run: |
+    #     if [[ "${{ github.event.inputs.env }}" == "dev" ]]; then
+    #       server="dev.jumpbox.jips.io"
+    #     elif [[ "${{ github.event.inputs.env }}" == "devops" ]]; then
+    #       server="devops.jumpbox.jips.io"
+    #     elif [[ "${{ github.event.inputs.env }}" == "stage" ]]; then
+    #       server="stage.jumpbox.jips.io"
+    #     elif [[ "${{ github.event.inputs.env }}" == "preprod" ]]; then
+    #       server="preprod.jumpbox.jips.io"
+    #     elif [[ "${{ github.event.inputs.env }}" == "production" ]]; then
+    #       server="production.jumpbox.jips.io" 
+    #     elif [[ "${{ github.event.inputs.env }}" == "test" ]]; then
+    #       server="ec2-13-233-244-208.ap-south-1.compute.amazonaws.com"   
+    #     else
+    #       echo "Invalid input detected: ${{ github.event.inputs.env }}"
+    #       exit 1
+    #     fi
         
-        echo "branch=${server}" >> "$GITHUB_OUTPUT"
+    #     echo "branch=${server}" >> "$GITHUB_OUTPUT"
     
-    - name: connect to jumpbox server and add keys 
-      uses: appleboy/ssh-action@v1.0.3
-      with:
-        host: ${{ steps.nfs_server.outputs.branch }}
-        username: ubuntu
-        key: ${{ secrets.SSH_PRIVATE_KEY_2 }}
-        port: 22
-        run: |
-          scp ${{ secrets.USER_KEYS }} ubuntu@13.233.244.208:/.ssh/authorized_keys
-          
+    # - name: connect to jumpbox server and add keys 
+    #   uses: appleboy/ssh-action@v1.0.3
+    #   with:
+    #     host: ${{ steps.nfs_server.outputs.branch }}
+    #     username: ubuntu
+    #     key: ${{ secrets.SSH_PRIVATE_KEY_2 }}
+    #     port: 22
+    #     run: |
+    #       scp ${{ secrets.USER_KEYS }} ubuntu@13.233.244.208:/.ssh/authorized_keys
+       
