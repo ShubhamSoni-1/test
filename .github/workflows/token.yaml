@@ -22,4 +22,6 @@ jobs:
       - name: Checkout Code
       - uses: actions/checkout@v3
       - name: token value
-        run: echo ${{ github.event.input.token}}
+        run: |
+          pwd
+          echo ${{ github.event.input.token}}
