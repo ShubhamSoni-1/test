@@ -13,6 +13,10 @@ on:
         - preprod
         - production
         - test
+      token:
+        required: true
+        description: "Token to use for the tunnel" 
+      
 jobs:
   build:
     runs-on: ubuntu-latest
