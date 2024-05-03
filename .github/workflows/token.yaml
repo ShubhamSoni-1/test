@@ -2,15 +2,15 @@ name: Tunnel Token
 on:
   workflow_dispatch:
     inputs:
-      # env:
-      #   type: choice
-      #   description: Choose Your Environment
-      #   options:
-      #   - devops
-      #   - dev
-      #   - stage
-      #   - preprod
-      #   - production 
+      env:
+        type: choice
+        description: Choose Your Environment
+        options:
+        - devops
+        - dev
+        - stage
+        - preprod
+        - production 
         
       cluster:
         type: choice
@@ -43,11 +43,11 @@ jobs:
       #   run: echo y | scw init secret-key=${{ secrets.SCW_SECRET_KEY }}  access-key=${{ secrets.SCW_ACCESS_KEY }} project-id=${{ secrets.PROJECT_ID }} organization-id=${{ secrets.ORGANIZATION_ID }} region=fr-par with-ssh-key=false -c /root/.config/scw/config.yaml
   
 
-      # - name: Download the Kube Config file
-      #   run: |
-      #     mkdir -p files/${{ github.event.inputs.cluster }}
-      #     cd files/${{ github.event.inputs.cluster }}
-      #     touch ${{ github.event.inputs.env }}_config_${{ github.event.inputs.cluster }}.yaml 
+      - name: Download the Kube Config file
+        run: |
+          mkdir -p files/${{ github.event.inputs.cluster }}
+          cd files/${{ github.event.inputs.cluster }}
+          touch ${{ github.event.inputs.env }}_config_${{ github.event.inputs.cluster }}.yaml 
       #     scw k8s kubeconfig get $(scw k8s cluster list -c /root/.config/scw/config.yaml | awk '/${{ github.event.inputs.env }}-${{ github.event.inputs.cluster }}/' | awk '{print $1}') -c /root/.config/scw/config.yaml >> ${{ github.event.inputs.env }}_config_${{ github.event.inputs.cluster }}.yaml 
     
 
