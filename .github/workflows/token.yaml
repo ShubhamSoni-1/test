@@ -54,7 +54,7 @@ jobs:
 
       - name: Adding the token
         run: |
-          sed 's/var_token/${{ github.event.inputs.token }}/' ./tunnel.yaml 
+          sed 's/var_token/${{ github.event.inputs.token }}/' tunnel.yaml 
 
       # - name: Creating Tunnel in the Cluster 
       #   run: |
