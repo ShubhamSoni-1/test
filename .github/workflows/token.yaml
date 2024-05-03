@@ -2,15 +2,15 @@ name: Tunnel Token
 on:
   workflow_dispatch:
     inputs:
-      # env:
-      #   type: choice
-      #   description: Choose Your Environment
-      #   options:
-      #   - devops
-      #   - dev
-      #   - stage
-      #   - preprod
-      #   - production
+      env:
+        type: choice
+        description: Choose Your Environment
+        options:
+        - devops
+        - dev
+        - stage
+        - preprod
+        - production
       
       cluster:
         type: choice
