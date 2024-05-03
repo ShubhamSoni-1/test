@@ -10,7 +10,8 @@ on:
         - dev
         - stage
         - preprod
-        - production 
+        - production
+        - test
         
       cluster:
         type: choice
