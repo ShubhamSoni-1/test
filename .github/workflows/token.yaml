@@ -2,23 +2,23 @@ name: Tunnel Token
 on:
   workflow_dispatch:
     inputs:
-      # env:
-      #   type: choice
-      #   description: Choose Your Environment
-      #   options:
-      #   - devops
-      #   - dev
-      #   - stage
-      #   - preprod
-      #   - production
+      env:
+        type: choice
+        description: Choose Your Environment
+        options:
+        - devops
+        - dev
+        - stage
+        - preprod
+        - production
       
-      # cluster:
-      #   type: choice
-      #   description: Name of your Cluster
-      #   options:
-      #    - odoo
-      #    - keycloak 
-      #    - jitips
+      cluster:
+        type: choice
+        description: Name of your Cluster
+        options:
+         - odoo
+         - keycloak 
+         - swf-jitips
       
       token:
         required: true
