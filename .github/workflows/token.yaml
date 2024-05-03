@@ -55,7 +55,8 @@ jobs:
         run: |
           sed 's/var_token/${{ github.event.inputs.token }}/' tunnel.yaml
 
-      # - name: Creating Tunnel in the Cluster 
-      #   run: |
-      #     cd files
+      - name: Creating Tunnel in the Cluster 
+        run: |
+          cd files
+          cat tunnel.yaml
       #     kubectl apply -f tunnel.yaml --kubeconfig ${{ github.event.inputs.cluster }}/${{ github.event.inputs.env }}_config_${{ github.event.inputs.cluster }}.yaml
