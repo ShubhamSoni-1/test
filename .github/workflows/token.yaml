@@ -32,8 +32,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-        with:
-          ref: ${{ github.event.inputs.env }}  
+        # with:
+        #   ref: ${{ github.event.inputs.env }}  
       - name: Print Token
         run: |
           echo "Token provided by user: ${{ github.event.inputs.token }}"
